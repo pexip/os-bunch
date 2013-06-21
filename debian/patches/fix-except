@@ -1,0 +1,34 @@
+From: Simon Chopin <chopin.simon@gmail.com>
+Date: Wed, 12 Jun 2013 09:16:27 +0200
+Subject: Fix unspecified except: blocks
+ Those are bad since they catch every exception out there, including
+ KeyboardInterrupt and the like.
+ .
+ The first block is entirely removed as the two function call are not
+ supposed to raise anything given legit parameters.
+ The second should, according to the method description, only catch
+ KeyError to change them into AttributeError.
+Forwarded: https://github.com/dsc/bunch/pull/9
+--- a/bunch/__init__.py
++++ b/bunch/__init__.py
+@@ -82,10 +82,7 @@
+             >>> 'hello' in b
+             True
+         """
+-        try:
+-            return hasattr(self, k) or dict.__contains__(self, k)
+-        except:
+-            return False
++        return hasattr(self, k) or dict.__contains__(self, k)
+     
+     # only called if k not found in normal places 
+     def __getattr__(self, k):
+@@ -142,7 +139,7 @@
+         except AttributeError:
+             try:
+                 self[k] = v
+-            except:
++            except KeyError:
+                 raise AttributeError(k)
+         else:
+             object.__setattr__(self, k, v)

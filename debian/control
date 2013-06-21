@@ -1,0 +1,26 @@
+Source: bunch
+Section: python
+Priority: optional
+Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Simon Chopin <chopin.simon@gmail.com>
+Build-Depends:
+ debhelper (>= 9),
+ python-all (>= 2.6.6-3~),
+ python-setuptools
+Standards-Version: 3.9.4
+X-Python-Version: >= 2.5
+Homepage: https://github.com/dsc/bunch/
+Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/bunch/trunk
+Vcs-Browser: http://anonscm.debian.org/viewsvn/python-modules/packages/bunch/trunk/
+
+Package: python-bunch
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Dot-accessible Python dictionary (a la JavaScript objects)
+ Bunch is a subclass of Python's dict that supports attribute-style
+ access, a la JavaScript.
+ .
+ For instance, you can have the following:
+ >>> b = bunch.bunchify({"foo":"bar"}
+ >>> b.foo
+ 'bar'

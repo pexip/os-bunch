@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@ --with python2
+
+override_dh_auto_test:
+ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
+	set -e; \
+	for py in $(shell pyversions -r); do \
+		$$py -m bunch.test -v; \
+	done
+endif
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -f debian/python-bunch/usr/lib/python2*/dist-packages/bunch-*.egg-info/SOURCES.txt
