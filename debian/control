@@ -13,7 +13,7 @@ X-Python-Version: >= 2.5
 Homepage: https://github.com/dsc/bunch/
 Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/bunch/trunk
 Vcs-Browser: http://anonscm.debian.org/viewsvn/python-modules/packages/bunch/trunk/
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ stretch
+XS-Pexip-Upstream: http://ftp.debian.org/debian/ buster
 
 Package: python-bunch
 Architecture: all
